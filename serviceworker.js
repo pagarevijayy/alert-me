@@ -1,3 +1,4 @@
+// "use strict";
 
 const cacheName = 'v1';
 
@@ -48,3 +49,14 @@ self.addEventListener('fetch', e => {
             .catch(err => caches.match(e.request).then(res => res))
     );
 });
+
+// Push Event
+self.addEventListener('push', event => {
+    // Check if notification permission is granted
+    if (!(self.Notification && self.Notification.permission === 'granted')) return;
+
+    self.registration.showNotification("PUSHED DEMO!!");
+
+    // for mocking push event, can refer this site: https://web-push-codelab.glitch.me/
+});
+
